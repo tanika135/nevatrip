@@ -2,28 +2,23 @@
 
 class Events
 {
-    private $pdo;
+    private $connection;
 
-    public function __construct()
+    public function __construct(Dataprovider $connection)
     {
-        try {
-            $this->pdo = new \PDO(
-                'mysql:host=localhost;dbname=tickets',
-                'root',
-                '',
-                [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
-
-        } catch (\PDOException $e) {
-            echo "Невозможно установить соединение с базой данных";
-        }
+        $this->connection = $connection;
     }
 
+    /**
+     * @return array
+     * Получает названия всех событий из БД
+     */
     public function getEvent () :array
     {
         try {
-            $query = "SELECT event_name FROM events";
+            $query = "SELECT * FROM events";
 
-            $event = $this->pdo->prepare($query);
+            $event = $this->connection->getConnection()->prepare($query);
             $event->execute();
             $events = $event->fetchAll();
 
