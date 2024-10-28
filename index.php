@@ -4,15 +4,21 @@
 
 <table>
     <form action="index.php" method="POST" id="add_form">
-        <input type="hidden" name="task_id" value="'.$taskId.'">
         <tr>
             <label for="events">Выберите событие:</label>
             <select id="event" name="event">
-                <?php $events = $event->getEvent();
+                <?php $events = $event->getEvent();?>
+                <script>
+                    var events = <?= json_encode($events) ?>;
+                </script>
+                <?php
                 foreach ($events as $event) { ?>
-                    <option value="<?=$event[0]?>"><?=$event[0]?></option>
+                    <option value="<?=$event['id']?>"><?=$event['event_name']?></option>
                 <?php }?>
             </select>
+        </tr>
+        <tr>
+            <div id="results"></div>
         </tr>
         <tr>
             <td></td>
@@ -24,6 +30,6 @@
         </tr>
     </form>
 </table>
-<div id="results"></div>
+
 
 <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/template/footer.php"); ?>
