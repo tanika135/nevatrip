@@ -1,13 +1,11 @@
 <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/template/header.php"); ?>
 
-</table>
-
-<table>
-    <form action="index.php" method="POST" id="add_form">
+<form action="index.php" method="POST" id="add_form">
+    <table>
         <tr>
             <label for="events">Выберите событие:</label>
             <select id="event" name="event">
-                <?php $events = $event->getEvent();?>
+                <?php $events = $event->getEvents();?>
                 <script>
                     var events = <?= json_encode($events) ?>;
                 </script>
@@ -28,8 +26,7 @@
             <td></td>
             <td><input type="hidden" id="submit" name="submit" value="true"></td>
         </tr>
-    </form>
-</table>
-
+    </table>
+</form>
 
 <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/template/footer.php"); ?>
