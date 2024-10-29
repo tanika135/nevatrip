@@ -4,7 +4,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/lib/connection.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/lib/events.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/lib/tickets.php');
 
-
 $connection = new Connection();
 $event = new Events($connection);
 $ticket = new Tickets($connection);
