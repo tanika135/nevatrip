@@ -33,9 +33,9 @@ class Tickets
      * @param array $ticketType
      * @param string $barcode
      * @return void
-     * Сохраняет данные о билете в БД
+     * Сохраняет данные о билетах в БД
      */
-    public function saveTickets(int $eventId, int $orderId, array $types)
+    public function saveTickets(int $eventId, int $orderId, array $types) :void
     {
         foreach ($types as $type => $quantity) {
             if ($quantity != 0) {
@@ -117,6 +117,12 @@ class Tickets
         return $tickets->fetch(PDO::FETCH_COLUMN);
     }
 
+    /**
+     * @param int $length
+     * @return string
+     * @throws Exception
+     * генерация баркода
+     */
     public function generateBarcode(int $length = 8)
     {
         $characters = '0123456789';
@@ -126,7 +132,6 @@ class Tickets
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
-
         return $randomString;
     }
 

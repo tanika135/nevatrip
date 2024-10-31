@@ -29,7 +29,7 @@ class Orders
         }
     }
 
-    public function saveOrder ($eventId, $userId, $equalPrice, $created, $types)
+    public function saveOrder (int $eventId, int $userId, int $equalPrice, string $created, array $types) :void
     {
         $this->connection->getConnection()->beginTransaction();
         $query = "INSERT INTO orders VALUES (
@@ -58,7 +58,5 @@ class Orders
         $ticket->saveTickets($eventId, $id, $types);
 
         $this->connection->getConnection()->commit();
-
-
     }
 }

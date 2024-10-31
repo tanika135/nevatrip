@@ -28,6 +28,11 @@ class Events
         return $events ? $events : [];
     }
 
+    /**
+     * @param int $id
+     * @return array
+     * Получает событие id
+     */
     public function getEvent (int $id) :array
     {
         try {
@@ -45,6 +50,12 @@ class Events
         return $events ? $events : [];
     }
 
+    /**
+     * @param array $tickets
+     * @param int $eventId
+     * @return int
+     * Считает стоимость заказа
+     */
     public function getTotalPrice (array $tickets, int $eventId) :int
     {
         $totalPrice = 0;
@@ -66,8 +77,6 @@ class Events
                 echo "Ошибка выполнения запроса: " . $e->getMessage();
             }
         }
-
         return $totalPrice;
-
     }
 }
